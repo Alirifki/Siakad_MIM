@@ -12,7 +12,7 @@ class Guru extends Model
 
     public function mapel()
     {
-        return $this->belongsTo(Mapel::class);
+        return $this->belongsToMany(Mapel::class);
     }
 
     public function dsk($id)

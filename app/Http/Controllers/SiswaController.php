@@ -11,80 +11,50 @@ use Illuminate\Support\Facades\Redirect;
 class SiswaController extends Controller
 {
     public function index () {
-        $siswas = Siswa::all();
-        //         return view('siswa.index', compact('siswa'));
-        return view('.admin.siswa.index', compact('siswas'));
+     
+        $siswa = Siswa::all();
+        return view('admin.siswa.index', compact('siswa'));
     }
 
     public function tambah () {
         $kelas = Kelas::all();
-        return view('layouts.pages.siswa.tambah', compact('kelas'));
+
+        // dd($kelas);
+        return view('admin.siswa.tambah', compact('kelas'));
     }
+
     public function store(Request $request){
-        
+       
+        $this->validate($request, [
+            'nis' => 'required',
+            'nama_siswa' => 'required',
+            'jk' => 'required',
+            'telp' => 'required',
+            'tmp_lahir' => 'required',
+            'tgl_lahir' => 'required',
+            'kelas' => 'required',
+        ]);
+
+         Siswa::create([
+            'nip' => $request->nis,
+            'nama_siswa' => $request->nama_siswa,
+            'kelas_id' => $request->kelas,
+            'jk' => $request->jk,
+            'telp' => $request->telp,
+            'tmp_lahir' => $request->tmp_lahir,
+            'tgl_lahir' => $request->tgl_lahir,
+        ]);
+
        return Redirect::route('view_siswa');
     }
+
+    public function edit(){
+
+    }
+    public function hapus($id){
+        $siswa = Siswa::find($id);
+        
+        $siswa->delete();
+        return Redirect::route('view_siswa');
+    }   
 }
-
-// namespace App\Http\Controllers;
-
-// use App\Models\Siswa;
-// use Illuminate\Http\Request;
-
-// class SiswaController extends Controller
-// {
-//     public function index()
-//     {
-//         $siswa = Siswa::with('kelas')->paginate(10);
-//         return view('siswa.index', compact('siswa'));
-//     }
-
-//     public function create()
-//     {
-//         $kelas = Kelas::all();
-//         return view('siswa.create', compact('kelas'));
-//     }
-
-//     public function store(Request $request)
-//     {
-//         $request->validate([
-//             'NIS' => 'required|unique:siswa',
-//             'nama_siswa' => 'required',
-//         ]);
-
-//         $siswa = Siswa::create($request->all());
-//         $siswa->kelas()->attach($request->kd_kelas);
-
-//         return redirect()->route('siswa.index')->with('success', 'Siswa created successfully.');
-//     }
-
-//     public function show(Siswa $siswa)
-//     {
-//         return view('siswa.show', compact('siswa'));
-//     }
-
-//     public function edit(Siswa $siswa)
-//     {
-//         $kelas = Kelas::all();
-//         return view('siswa.edit', compact('siswa', 'kelas'));
-//     }
-
-//     public function update(Request $request, Siswa $siswa)
-//     {
-//         $request->validate([
-//             'NIS' => 'required|unique:siswa,NIS,'.$siswa->NIS,
-//             'nama_siswa' => 'required',
-//         ]);
-
-//         $siswa->update($request->all());
-//         $siswa->kelas()->sync($request->kd_kelas);
-
-//         return redirect()->route('siswa.index')->with('success', 'Siswa updated successfully.');
-//     }
-
-//     public function destroy(Siswa $siswa)
-//     {
-//         $siswa->delete();
-//         return redirect()->route('siswa.index')->with('success', 'Siswa deleted successfully.');
-//     }
-// }

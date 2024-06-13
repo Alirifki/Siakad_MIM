@@ -22,28 +22,46 @@ class UserController extends Controller
 
    public function tambah(String $id){
 
-      $user = Guru::find($id);
+      $user = Guru::find($id) ?? 
+      $user = Siswa::find($id);
+     
    
       return view('admin.user.tambah',compact('user'));
    }
      public function store(Request $request) {
+      $role = $request->role;
+dd($role);
+        if ($role === 'siswa') {
+            $user = Siswa::create([
+                'NIS' => $request->nis,
+                'nama_siswa' => $request->name,
+                'email' => $request->email,
+                'password' =>$request->password
+            ]);
+        } elseif ($role === 'guru') {
+            $user = Guru::create([
+                'nip' => $request->nip,
+                'nama_guru' => $request->name,
+                'email' => $request->email,
+                'password' =>$request->password
+            ]); 
+         }
+   //    $this->validate($request, [
+   //      'name' => 'required',
+   //       'email' => 'required',
+   //       'password' => 'required',
+   //       'role' => 'required',
+   //       'nomor_id' => 'required', 
+   //   ]);
 
-      $this->validate($request, [
-        'name' => 'required',
-         'email' => 'required',
-         'password' => 'required',
-         'role' => 'required',
-         'nomor_id' => 'required', 
-     ]);
-
-    //  dd($request->name,$request->nomor_id,$request->role);
-     User::create([
-        'name' => $request->name,
-        'email'=> $request->email,
-        'role' => $request->role,
-        'nip' => $request->nomor_id,
-        'password' =>$request->password,
-    ]);
+   //  //  dd($request->name,$request->nomor_id,$request->role);
+   //   User::create([
+   //      'name' => $request->name,
+   //      'email'=> $request->email,
+   //      'role' => $request->role,
+   //      'nip' => $request->nomor_id,
+   //      'password' =>$request->password,
+   //  ]);
       
          return Redirect::route('view_users');
          }

@@ -17,7 +17,7 @@ class KelasController extends Controller
 
     public function show (String $kelas_id): View {
         
-    $siswa = KelasSiswa::where('kelas_id', $kelas_id)->get();
+    $siswa = Kelas::where('kelas_id', $kelas_id)->get();
     // ->with('siswa','kelas')->get();
      return view('layouts.pages.kelas.show', compact('siswa'));
         

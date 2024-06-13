@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_kelas');
-            $table->integer('guru_id');
+            $table->integer('guru_id')->nullable();
             $table->timestamps();
         });
     }

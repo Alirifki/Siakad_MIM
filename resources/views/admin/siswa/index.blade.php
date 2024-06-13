@@ -7,7 +7,7 @@
 
 <div class="flex flex-row-reverse">
     <div>
-        <a href="{{route('tambah_guru')}}" class=" mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ">Tambah</a>
+        <a href="{{route('tambah_siswa')}}" class=" mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ">Tambah</a>
     </div>
 </div>
 
@@ -38,7 +38,7 @@
                         </th>
                     </tr>
                 </thead>
-                @foreach ($siswas as $data)
+                @foreach ($siswa as $data)
                 <tbody>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -55,8 +55,7 @@
                          </td>
                         <td class="px-6 py-4 text-right">
                             <a href="{{route('tambah_user',$data)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Buatkan User</a> /
-                            <form action="{{route('delete_guru',$data)}}" method="post">
-                                @method('delete')
+                            <form action="{{route('delete_siswa',$data)}}" method="post">
                                 @csrf
                                    <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Hapus</button>
                                 </form>

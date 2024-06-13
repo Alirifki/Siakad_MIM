@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
+use App\Models\Jadwal;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,16 +53,21 @@ Route::middleware('auth')->group(function () {
     // kelas
     Route::get('/kelas',[KelasController::class, 'index'])->name('view_kelas');
     Route::get('/kelas/{kelas}',[KelasController::class, 'show'])->name('detail_kelas');
-    Route::post('/siswa/tambah',[SiswaController::class, 'store'])->name('store_siswa');
     
     // Siswa
     Route::get('/siswa',[SiswaController::class, 'index'])->name('view_siswa');
     Route::get('/siswa/tambah',[SiswaController::class, 'tambah'])->name('tambah_siswa');
+    Route::post('siswa/tambah',[SiswaController::class, 'store'])->name('store_siswa');
+    Route::post('siswa/{id}',[SiswaController::class],'hapus')->name('delete_siswa');
     
     // Nilai
     Route::get('/nilai',[NilaiController::class, 'view'])->name('view_nilai');
     Route::get('/nilai/input',[NilaiController::class, 'index'])->name('index_kelas');
     Route::get('/nilai/input/{kelas}',[NilaiController::class, 'input_nilai'])->name('input_nilai');
+
+    //
+    Route::get('/jadwal',[JadwalController::class, 'index'])->name('jadwal');
+    Route::get('jadwal/buat', [JadwalController::class, 'buat'])->name('buat_jadwal');
 });
 
 require __DIR__.'/auth.php';

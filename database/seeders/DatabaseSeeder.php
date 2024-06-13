@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MapelSeeder::class);
         $this->call(RuangSeeder::class);
         $this->call(UsersSeeder::class);
+        $this->call(KelasSeeder::class);
         }
     
 }
