@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('guru_id');
             $table->time('jam_mulai');
             $table->time('jam_selesai');
-            $table->integer('ruang_id');
             $table->timestamps();
         });
     }

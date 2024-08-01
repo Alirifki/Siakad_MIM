@@ -32,21 +32,10 @@ class Jadwal extends Model
     return $this->belongsTo(Guru::class)->withDefault();
   }
 
-  public function ruang()
-  {
-    return $this->belongsTo(Ruang::class)->withDefault();
-  }
-
   public function rapot($id)
   {
     $kelas = Kelas::where('id', $id)->first();
     return $kelas;
-  }
-
-  public function pengajar($id)
-  {
-    $guru = Guru::where('id', $id)->first();
-    return $guru;
   }
 
   public function ulangan($id)

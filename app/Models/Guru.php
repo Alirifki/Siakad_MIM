@@ -12,9 +12,12 @@ class Guru extends Model
 
     public function mapel()
     {
-        return $this->belongsToMany(Mapel::class);
+        return $this->belongsTo(Mapel::class);
     }
-
+    public function jadwal()
+    {
+        return $this->Hasmany(Jadwal::class);
+    }
     public function dsk($id)
     {
         $dsk = Nilai::where('guru_id', $id)->first();

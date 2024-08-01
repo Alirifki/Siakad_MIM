@@ -20,51 +20,45 @@ class UserController extends Controller
       return view('admin.user.index', compact('users'));
    }
 
-   public function tambah(String $id){
-
-      $user = Guru::find($id) ?? 
-      $user = Siswa::find($id);
-     
-   
+   public function tambah($id, $table)
+   {
+ 
+    if ($table == 'guru') {
+        $user = Guru::find($id);
+    } elseif ($table == 'siswa') {
+        $user = Siswa::find($id);
+    } else {
+        // Handle invalid table parameter
+        abort(404);
+    }
+    // dd($user->nama_guru);
       return view('admin.user.tambah',compact('user'));
    }
      public function store(Request $request) {
       $role = $request->role;
-dd($role);
+      
         if ($role === 'siswa') {
-            $user = Siswa::create([
-                'NIS' => $request->nis,
-                'nama_siswa' => $request->name,
+            $user = User::create([
+                'nis' => $request->nomor_id,
+                'name' => $request->name,
                 'email' => $request->email,
+                'role'=>$request->role,
                 'password' =>$request->password
             ]);
+
         } elseif ($role === 'guru') {
-            $user = Guru::create([
-                'nip' => $request->nip,
-                'nama_guru' => $request->name,
+            $user = User::create([
+                'nip' => $request->nomor_id,
+                'name' => $request->name,
                 'email' => $request->email,
+                'role'=> $request->role,
                 'password' =>$request->password
             ]); 
-         }
-   //    $this->validate($request, [
-   //      'name' => 'required',
-   //       'email' => 'required',
-   //       'password' => 'required',
-   //       'role' => 'required',
-   //       'nomor_id' => 'required', 
-   //   ]);
-
-   //  //  dd($request->name,$request->nomor_id,$request->role);
-   //   User::create([
-   //      'name' => $request->name,
-   //      'email'=> $request->email,
-   //      'role' => $request->role,
-   //      'nip' => $request->nomor_id,
-   //      'password' =>$request->password,
-   //  ]);
       
-         return Redirect::route('view_users');
-         }
+        }
+
+        return Redirect::route('view_users');
+     }
 }
 
 //

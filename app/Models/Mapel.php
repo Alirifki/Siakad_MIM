@@ -11,19 +11,17 @@ class Mapel extends Model
     use HasFactory;
     protected $fillable = ['id', 'nama_mapel'];
 
-    public function sikap($id)
-    {
-        $siswa = Siswa::where('no_induk', Auth::user()->no_induk)->first();
-        $nilai = Sikap::where('siswa_id', $siswa->id)->where('mapel_id', $id)->first();
-        return $nilai;
+    public function guru(){
+        return $this->belongsTo(Guru::class);
+    }
+    public function jadwal(){
+        return $this->hasMany(Guru::class);
     }
 
-    public function cekSikap($id)
-    {
-        $data = json_decode($id, true);
-        $sikap = Sikap::where('siswa_id', $data['siswa'])->where('mapel_id', $data['mapel'])->first();
-        return $sikap;
+    public function nilai(){
+        return $this->hasMany(Nilai::class);
     }
 
     protected $table = 'mapel';
+
 }

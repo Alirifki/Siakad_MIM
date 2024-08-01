@@ -51,10 +51,10 @@
                             {{$data->nama_guru}}
                          </td>
                          <td class="px-6 py-4">
-                            {{$data->mapel_id}}
+                            {{$data->mapel->nama_mapel}}
                          </td>
                         <td class="px-6 py-4 text-right">
-                            <a href="{{route('tambah_user',$data)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Buatkan User</a> /
+                            <a href="{{route('tambah_user',['id' => $data->id, 'table' => 'guru'])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Buatkan User</a> /
                             <form action="{{route('delete_guru',$data)}}" method="post">
                                 @method('delete')
                                 @csrf

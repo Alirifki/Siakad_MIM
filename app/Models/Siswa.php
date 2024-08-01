@@ -38,4 +38,8 @@ class Siswa extends Model
     }
 
     protected $table = 'siswa';
+
+    public function user ()  {
+        return $this->belongsTo(User::class); 
+    }
 }

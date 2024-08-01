@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nip')->unique();
             $table->string('nama_guru');
-            $table->integer('mapel_id');
+            $table->string('mapel_id');
             $table->enum('jk', ['L', 'P']);
             $table->string('telp')->nullable();
             $table->string('tmp_lahir', 50)->nullable();

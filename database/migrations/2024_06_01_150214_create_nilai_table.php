@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('nilai', function (Blueprint $table) {
-            $table->integer('guru_id');
-            $table->integer('kkm')->default(70);
-            $table->text('deskripsi_a')->nullable();
-            $table->text('deskripsi_b')->nullable();
-            $table->text('deskripsi_c')->nullable();
-            $table->text('deskripsi_d')->nullable();
+            $table->bigIncrements('id');
+            $table->string('mapel_id');
+            $table->string('siswa_id');
+            $table->string('uh1')->nullable();
+            $table->string('uh2')->nullable();
+            $table->string('uts')->nullable();
+            $table->string('uh3')->nullable();
+            $table->string('uas')->nullable();
             $table->timestamps();
         });
     }

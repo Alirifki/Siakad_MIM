@@ -36,7 +36,7 @@ class SiswaController extends Controller
         ]);
 
          Siswa::create([
-            'nip' => $request->nis,
+            'nis' => $request->nis,
             'nama_siswa' => $request->nama_siswa,
             'kelas_id' => $request->kelas,
             'jk' => $request->jk,

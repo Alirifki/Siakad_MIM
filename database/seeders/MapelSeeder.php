@@ -44,5 +44,47 @@ class MapelSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
+        DB::table('mapel')->insert([
+            'id' => 6,
+            'nama_mapel' => 'Penjasorkes',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('mapel')->insert([
+            'id' => 7,
+            'nama_mapel' => 'Bahasa Jawa',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('mapel')->insert([
+            'id' => 8,
+            'nama_mapel' => 'Ilmu Pengetahuan Alam',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('mapel')->insert([
+            'id' => 9,
+            'nama_mapel' => 'Ilmu Pengetahuan Sosial',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('mapel')->insert([
+            'id' => 10,
+            'nama_mapel' => 'Tematik',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('mapel')->insert([
+            'id' => 11,
+            'nama_mapel' => 'Seni',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('mapel')->insert([
+            'id' => 12,
+            'nama_mapel' =>'K.Ks',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
         }
 }

@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     // Users
     Route::post('/user/store',[UserController::class, ('store')])->name('create_user');
     Route::get('/users',[UserController::class, 'index'])->name('view_users');
-    Route::get('/user/tambah/{id}', [UserController::class, 'tambah'])->name('tambah_user');
+    Route::get('/user/tambah/{id}/{table}', [UserController::class, 'tambah'])->name('tambah_user');
     
     // Mapel
     Route::get('/mapel',[MapelController::class, 'index'])->name('view_mapel');
@@ -61,13 +61,15 @@ Route::middleware('auth')->group(function () {
     Route::post('siswa/{id}',[SiswaController::class],'hapus')->name('delete_siswa');
     
     // Nilai
-    Route::get('/nilai',[NilaiController::class, 'view'])->name('view_nilai');
     Route::get('/nilai/input',[NilaiController::class, 'index'])->name('index_kelas');
-    Route::get('/nilai/input/{kelas}',[NilaiController::class, 'input_nilai'])->name('input_nilai');
+    Route::get('/nilai/input/{kelas}',[NilaiController::class, 'input'])->name('input');
+    Route::post('/nilai/input', [NilaiController::class, 'store'])->name('store');
 
-    //
+    //Jadwal
     Route::get('/jadwal',[JadwalController::class, 'index'])->name('jadwal');
     Route::get('jadwal/buat', [JadwalController::class, 'buat'])->name('buat_jadwal');
+    Route::post('jadwal/buat', [JadwalController::class, 'store'])->name(('store_jadwal'));
+    Route::get('jadawl/{hari}',[JadwalController::class,'show'])->name('show');
 });
 
 require __DIR__.'/auth.php';
