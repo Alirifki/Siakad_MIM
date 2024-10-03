@@ -17,5 +17,8 @@ class Nilai extends Model
     public function mapel(){
         return $this->belongsTo(Mapel::class);
     }
+    public function siswa(){
+        return $this->belongsTo(Siswa::class);
+    }
     protected $table = 'nilai';
 }

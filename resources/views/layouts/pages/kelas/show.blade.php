@@ -33,7 +33,7 @@
                             {{$i}}
                         </th>
                         <td class="px-6 py-4">
-                              {{$item->siswa->nis}}
+                              {{-- {{$item->siswa-}} --}}
                         </td>
                         <td class="px-6 py-4">
                             {{$item->siswa->nama_siswa}}

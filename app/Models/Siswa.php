@@ -30,16 +30,13 @@ class Siswa extends Model
         return $nilai;
     }
 
-    public function nilai($id)
-    {
-        $guru = Guru::where('id_card', Auth::user()->id_card)->first();
-        $nilai = Rapot::where('siswa_id', $id)->where('guru_id', $guru->id)->first();
-        return $nilai;
+    public function user ()  {
+        return $this->belongsTo(User::class); 
+    }
+    public function nilai ()  {
+        return $this->belongsTo(Nilai::class); 
     }
 
     protected $table = 'siswa';
 
-    public function user ()  {
-        return $this->belongsTo(User::class); 
-    }
 }

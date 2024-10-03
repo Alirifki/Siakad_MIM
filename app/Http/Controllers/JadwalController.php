@@ -16,19 +16,16 @@ class JadwalController extends Controller
 {
     public function index (){
        
-       
-        // $kelas = Kelas::all(); 
-        $hari = Hari::all();
+    $jadwal = Jadwal::all();
+     return view ('admin.jadwal.index', compact('jadwal'));
 
-            return view('admin.jadwal.index', compact('hari'));
     }
 
     public function buat(){
 
-        $hari = Hari::all();
         $guru = Guru::all();
         $kelas = Kelas::all();
-        return view('admin.jadwal.tambah', compact('hari', 'kelas', 'guru'));
+        return view('admin.jadwal.tambah', compact('kelas', 'guru'));
     }
 
     public function store (Request $request) {

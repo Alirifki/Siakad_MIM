@@ -38,8 +38,5 @@
             <?php $i++ ?>
             @endforeach
         </table>
-    </div>
-        
-
-
+</div>
 @endsection

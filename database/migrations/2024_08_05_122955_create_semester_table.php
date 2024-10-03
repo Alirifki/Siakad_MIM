@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hari', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama_hari');
+        Schema::create('semester', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hari');
+        Schema::dropIfExists('semester');
     }
 };

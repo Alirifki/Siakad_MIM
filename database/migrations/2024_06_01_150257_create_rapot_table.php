@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('rapot', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nilai_id');
+            $table->string('mapel_id')->nullable();
+            $table->string('siswa_id')->nullable();
+            $table->string('smt_id')->nullable();
             $table->string('na');
-            $table->string('kkm')->default('70');
-            $table->string('predikat');
-            $table->string('deskripsi');
             $table->timestamps();
         });
     }

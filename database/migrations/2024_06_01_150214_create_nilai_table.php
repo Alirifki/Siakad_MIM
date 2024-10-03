@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('nilai', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('mapel_id');
-            $table->string('siswa_id');
-            $table->string('uh1')->nullable();
-            $table->string('uh2')->nullable();
-            $table->string('uts')->nullable();
-            $table->string('uh3')->nullable();
-            $table->string('uas')->nullable();
+            $table->string('mapel_id')->nullable();
+            $table->string('siswa_id')->nullable();
+            $table->enum('smt_id',['ganjil','genap'])->nullable();
+            $table->string('uh1');
+            $table->string('uts');
+            $table->string('uh2');
+            $table->string('uas');
             $table->timestamps();
         });
     }

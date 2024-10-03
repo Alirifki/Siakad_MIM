@@ -6,6 +6,7 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RaportController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Models\Jadwal;
@@ -62,14 +63,22 @@ Route::middleware('auth')->group(function () {
     
     // Nilai
     Route::get('/nilai/input',[NilaiController::class, 'index'])->name('index_kelas');
-    Route::get('/nilai/input/{kelas}',[NilaiController::class, 'input'])->name('input');
-    Route::post('/nilai/input', [NilaiController::class, 'store'])->name('store');
+    Route::get('/nilai/{kelas}',[NilaiController::class, 'input'])->name('input');
+    Route::get('/nilai/show',[NilaiController::class, 'show'])->name('show_nilai');
+    Route::delete('/niali/{nilai}',[NilaiController::class, 'delete_nilai'])->name('delete_nilai');
+    Route::get('/nilai/input/{id}',[NilaiController::class,'getsiswa'])->name('nilai_input');
+ 
 
     //Jadwal
     Route::get('/jadwal',[JadwalController::class, 'index'])->name('jadwal');
     Route::get('jadwal/buat', [JadwalController::class, 'buat'])->name('buat_jadwal');
     Route::post('jadwal/buat', [JadwalController::class, 'store'])->name(('store_jadwal'));
     Route::get('jadawl/{hari}',[JadwalController::class,'show'])->name('show');
+
+    //Raport 
+
+    Route::get('/raport',[RaportController::class,'raport'])->name('raport');
+    Route::post('/nilai/input/{id}',[RaportController::class, 'store_raport'])->name('');
 });
 
 require __DIR__.'/auth.php';

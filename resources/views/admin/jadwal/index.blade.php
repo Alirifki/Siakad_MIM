@@ -19,23 +19,41 @@
                             No
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Nama Kelas
+                           hari
                         </th>
-                        
+                        <th scope="col" class="px-6 py-3">
+                            Kelas
+                         </th><th scope="col" class="px-6 py-3">
+                            Mapel
+                         </th><th scope="col" class="px-6 py-3">
+                            Guru
+                         </th><th scope="col" class="px-6 py-3">
+                            Jam
+                         </th>
                         
                     </tr>
                 </thead>
-                @foreach ($hari as $item)
+                @foreach ($jadwal as $item)
                 <tbody>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                            {{$loop->iteration}}
                         </th>
-                        <td class="px-6 py-4">
-                            <a href="{{route('show',$item)}}">
-                               {{$item->nama_hari}}
-                            </a>
+                            <td class="px-6 py-4">
+                               {{$item->hari}}
                             </td>
+                            <td class="px-6 py-4">
+                                {{$item->kelas->nama_kelas}}
+                             </td>
+                             <td class="px-6 py-4">
+                                {{$item->mapel->nama_mapel}}
+                             </td>
+                             <td class="px-6 py-4">
+                                {{$item->guru->nama_guru}}
+                             </td>
+                             <td class="px-6 py-4">
+                                {{$item->jam_mulai}} - {{$item->jam_selesai}}
+                             </td>
                 </tbody>
                 @endforeach
             </table>            
