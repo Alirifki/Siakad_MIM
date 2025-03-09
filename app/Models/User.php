@@ -18,17 +18,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role', 'nis', 'nip'
+        'name', 'email', 'password', 'role', 'no_induk', 'id_card'
     ];
 
-    public function guru()
+    public function guru($id)
     {
-       return $this->hasMany(Guru::class); 
+      $guru = Guru::where('id_card',$id)->first();
+      return $guru;
     }
 
     public function siswa($id)
     {
-        $siswa = Siswa::where('nis', $id)->first();
+        $siswa = Siswa::where('no_induk', $id)->first();
         return $siswa;
     }
 

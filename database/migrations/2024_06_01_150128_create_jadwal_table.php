@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('jadwal', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('hari',['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu']);
+            $table->integer('hari_id');
             $table->integer('kelas_id');
             $table->integer('mapel_id');
             $table->integer('guru_id');
             $table->time('jam_mulai');
             $table->time('jam_selesai');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

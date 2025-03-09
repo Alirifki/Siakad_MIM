@@ -10,11 +10,21 @@ class Jadwal extends Model
 {
     use HasFactory;
     
-  protected $fillable = ['hari', 'kelas_id', 'mapel_id', 'guru_id', 'jam_mulai', 'jam_selesai', 'ruang_id'];
+  protected $fillable = [
+                         'hari_id',
+                         'kelas_id', 
+                         'mapel_id', 
+                         'guru_id', 
+                         'jam_mulai', 
+                         'jam_selesai',
+                        ];
 
+ public  function hari()
+ {
+  return $this->belongsTo(Hari::class)->withDefault();
+ }
 
-
-  public function kelas()
+ public function kelas()
   {
     return $this->belongsTo(Kelas::class)->withDefault();
   }
@@ -33,6 +43,12 @@ class Jadwal extends Model
   {
     $kelas = Kelas::where('id', $id)->first();
     return $kelas;
+  }
+
+  public function pengajar($id)
+  {
+    $guru = Guru::where('id', $id)->first();
+    return $guru;
   }
 
   public function ulangan($id)

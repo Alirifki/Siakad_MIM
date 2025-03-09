@@ -36,10 +36,9 @@ class UserController extends Controller
    }
      public function store(Request $request) {
       $role = $request->role;
-      
         if ($role === 'siswa') {
             $user = User::create([
-                'nis' => $request->nomor_id,
+                'no_induk' => $request->nomor_id,
                 'name' => $request->name,
                 'email' => $request->email,
                 'role'=>$request->role,
@@ -48,7 +47,7 @@ class UserController extends Controller
 
         } elseif ($role === 'guru') {
             $user = User::create([
-                'nip' => $request->nomor_id,
+                'id_card' => $request->nomor_id,
                 'name' => $request->name,
                 'email' => $request->email,
                 'role'=> $request->role,

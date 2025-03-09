@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Guru extends Model
 {
     use HasFactory;
-    protected $fillable = ['nip', 'nama_guru', 'mapel_id', 'jk', 'telp', 'tmp_lahir', 'tgl_lahir'];
+    protected $fillable = [ 'id_card',
+                            'nip',
+                            'nama_guru',
+                            'mapel_id', 
+                            'jk', 
+                            'telp', 
+                            'tmp_lahir',
+                            'tgl_lahir',
+                            'foto'];
 
     public function mapel()
     {

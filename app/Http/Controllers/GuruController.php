@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Models\Mapel;
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class GuruController extends Controller
 {
-    public function index () {
-     
+   
+    public function index() {
+        // $id = Crypt::decrypt($id);
+        // // $mapel = Mapel::find($id);
+        $mapel = Mapel::orderBy('nama_mapel')->get();
+        // $guru = Guru::where('mapel_id',$id)->get();
+
         $guru = Guru::all();
-        return view('admin.guru.index', compact('guru'));
+        return view('admin.guru.show', compact('guru','mapel'));
     }
 
+    
     public function tambah () {
         $mapels = Mapel::all();
         return view('admin.guru.tambah', compact('mapels'));
@@ -26,21 +35,29 @@ class GuruController extends Controller
         $this->validate($request, [
             'nip' => 'required',
             'nama_guru' => 'required',
+            'id_card' => 'required',
             'mapel' => 'required',
             'jk' => 'required',
             'telp' => 'required',
             'tmp_lahir' => 'required',
             'tgl_lahir' => 'required',
         ]);
+        
+        $file = $request-> file('foto');
+        $path = time().'-'.$request->nama_guru.'.'.$file->getClientOriginalExtension();
+
+        Storage::disk('local')->put('public/'.$path,file_get_contents($file));
 
          Guru::create([
             'nip' => $request->nip,
             'nama_guru' => $request->nama_guru,
             'mapel_id' => $request->mapel,
+            'id_card' => $request->id_card,
             'jk' => $request->jk,
             'telp' => $request->telp,
             'tmp_lahir' => $request->tmp_lahir,
             'tgl_lahir' => $request->tgl_lahir,
+            'foto' => $path,
         ]);
 
        return Redirect::route('view_guru');
@@ -49,75 +66,9 @@ class GuruController extends Controller
     public function edit(){
 
     }
-    public function hapus(Guru $guru){
+    public function hapus($id){
+        $guru = Guru::findorfail($id);
         $guru->delete();
         return Redirect::back();
     }
 }
-
-// <?php
-
-// namespace App\Http\Controllers;
-
-// use App\Models\Guru;
-// use Illuminate\Http\Request;
-
-// class GuruController extends Controller
-// {
-//     public function index()
-//     {
-//         $gurus = Guru::all();
-//         return view('guru.index', compact('gurus'));
-//     }
-
-//     public function create()
-//     {
-//         return view('guru.create');
-//     }
-
-//     public function store(Request $request)
-//     {
-//         $request->validate([
-//             'nip' => 'required',
-//             'kd_mapel' => 'required',
-//             'nama_guru' => 'required',
-//         ]);
-
-//         Guru::create($request->all());
-
-//         return redirect()->route('guru.index')
-//                         ->with('success','Guru created successfully.');
-//     }
-
-//     public function show(Guru $guru)
-//     {
-//         return view('guru.show',compact('guru'));
-//     }
-
-//     public function edit(Guru $guru)
-//     {
-//         return view('guru.edit',compact('guru'));
-//     }
-
-//     public function update(Request $request, Guru $guru)
-//     {
-//         $request->validate([
-//             'nip' => 'required',
-//             'kd_mapel' => 'required',
-//             'nama_guru' => 'required',
-//         ]);
-
-//         $guru->update($request->all());
-
-//         return redirect()->route('guru.index')
-//                         ->with('success','Guru updated successfully');
-//     }
-
-//     public function destroy(Guru $guru)
-//     {
-//         $guru->delete();
-
-//         return redirect()->route('guru.index')
-//                         ->with('success','Guru deleted successfully');
-//     }
-// }

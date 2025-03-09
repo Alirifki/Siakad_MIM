@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kehadiran', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('ket',30);
-            $table->string('color',6);
+        Schema::create('hari', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('nama_hari',20);
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kehadiran');
+        Schema::dropIfExists('hari');
     }
 };
